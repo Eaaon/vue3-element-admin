@@ -10,6 +10,7 @@ Vue3 Element Admin 是一个免费开源的中后台模版。使用了最新的`
 ## 准备
 
 - [Code Guide by @AlloyTeam](http://alloyteam.github.io/CodeGuide/) -代码规范
+- [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue) -代码规范
 - [node](http://nodejs.org/) 和 [git](https://git-scm.com/) -项目开发环境
 - [Vue-cli](https://cli.vuejs.org/zh/) - 熟悉 Vue CLI 脚手架
 - [Vue3](https://v3.vuejs.org/) - 熟悉 Vue 基础语法
@@ -26,6 +27,7 @@ Vue3 Element Admin 是一个免费开源的中后台模版。使用了最新的`
 ## 工具
 
 - [vscode](https://code.visualstudio.com/) - 开发工具
+- [Volar](https://github.com/vuejs/language-tools) - VSCode 插件为 Vue SFC 提供了开箱即用的格式化功能
 - [postman](https://www.postman.com/) - 接口调试工具
 - [Vue.js devtools](https://chrome.google.com/webstore/category/extensions?hl=zh) - 需要梯子安装
 - [git](https://git-scm.com/) - 版本控制
