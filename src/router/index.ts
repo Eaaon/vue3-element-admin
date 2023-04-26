@@ -1,65 +1,25 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-// import Home from '@/views/home/index.vue'
-import Layout from '@/layout/index.vue'
-
-const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import('@/views/login/index.vue'),
-    meta: {
-      title: 'login',
-    },
-  },
-  {
-    path: '/home',
-    name: 'home',
-    component: Layout,
-    meta: {
-      title: 'home',
-    },
-    children: [
-      {
-        path: 'basic',
-        name: 'FormBasicDemo',
-        component: () => import('@/views/home/index.vue'),
-        meta: {
-          title: "22",
-        },
-      }
-    ]
-  },
-  {
-    path: '/',
-    redirect: '/home',
-  },
-  {
-    path: '/401',
-    component: () => import('@/views/error-page/401/index.vue'),
-    meta: {
-      title: '401',
-    },
-  },
-  {
-    path: '/404',
-    component: () => import('@/views/error-page/404/index.vue'),
-    meta: {
-      title: '404',
-    },
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    name: '404',
-    redirect: '/404'
-  },
-]
+import { constantRoutes } from './route'
+import store from '@/store'
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
+  routes: [...constantRoutes],
   scrollBehavior: () => ({ left: 0, top: 0 }),
 })
 
+console.log(store.getters.routes)
 
+router.beforeEach(async (to, from, next) => {
+  const tTitle = to?.meta?.title as string
+  const title = "Vue3 Element Admin"
+  document.title = tTitle? `${tTitle} | ${title}` : `${title}`
+  const isAuthenticated = true
+
+  await store.dispatch('permission/addRoutes',constantRoutes)
+
+  if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
+  else next()
+})
 
 export default router
